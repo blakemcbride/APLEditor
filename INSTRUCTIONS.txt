@@ -1,0 +1,104 @@
+
+APL Editor Instructions
+
+SETUP
+
+APL code for the editor is in the file named Editor.apl
+This is a DUMP file and should be converted into a regular workspace
+as follows:
+
+Place Editor.apl in your workspace directory.
+
+From APL type:
+	)LOAD Editor
+	)SAVE Editor
+
+This will create the workspace in the file named Editor.xml
+
+Delete the file Editor.apl
+
+
+LOADING
+
+Let's say you want to edit functions in your workspace named XYZ.  To
+do this you would execute the following commands:
+
+	)LOAD XYZ
+	)COPY Editor
+
+You now have everything you need to edit any function.
+
+UNLOADING
+
+Eventually, you are likely to want to get rid of the editor facilities
+that were copied into your workspace.  This can easily and completely
+be done by executing the following:
+
+	⎕EX E∆FNS
+
+STARTUP
+
+Function editing is done one function at a time.  You can evoke the
+editor in two ways as follows:
+
+	Editf 'MyFunc'
+
+This allows you to edit the pre-existing APL function named MyFunc.
+You can also do:
+
+	Editf ''
+
+This allows you to create a new function.
+
+STANDARD RESPONSES
+
+In many places where the editor is waiting for user input, in addition
+to responding with what it is querying for, you can alternatively
+enter one of the following:
+
+	end		means end the current function
+	help		means display a help message
+	<Enter>		Enter key without any response - means "done"
+
+Even when you are editing a line, when the system supplied no prompt
+but is is waiting for user input, you can type help to get help text.
+
+I suggest you type help at every prompt until you feel comfortable
+with the editor.
+
+AVAILABLE COMMANDS
+
+As in most places in the system, you only need to type in enough
+letters of the command to make it unique.  Top-level commands are as
+follows:
+
+    end       =  exit
+    add       =  to add; insert; or write over a line                  
+    edit      =  to modify an existing line                            
+    delete    =  to delete a group of lines                            
+    copy      =  to copy lines from one place to another               
+    replace   =  to search and replace a character string              
+    screen    =  to search and list your function a screen at a time   
+    list      =  to scroll the contents of your function on your screen
+    new       =  to erase the entire function                          
+    save      =  save function definition                              
+    revert    =  revert back to original definition                    
+
+
+ LINE EDITING
+
+ When you select the 'edit' option, the system asks you what line(s) you
+ wish to edit.  When you select the line, the system displays the original
+ line and puts the cursor on the following (blank) line in order for you
+ to edit the line above it.  If you type help at that point the system
+ will display a help text, but I repeat it here for your convenience.
+
+    Enter  /  under characters you wish to delete.
+    Enter  ,  under the character you wish to insert before.
+    Enter text you wish to insert after the first ,
+    Enter 'end' to leave without changing the line.
+    Enter an empty 'Enter' to leave the edit.
+    Enter a number to tab out to a column.
+    Enter text not preceded by , to tab to that text.
+    Enter , not followed by anything to add to the end of the line.
+
