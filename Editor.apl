@@ -2,7 +2,7 @@
 
  ⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝
 ⍝
-⍝ Editor 2014-05-30 20:23:24 (GMT-5)
+⍝ Editor 2014-05-31 10:51:20 (GMT-5)
 ⍝
  ⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝
 
@@ -118,21 +118,20 @@
  ⍞←(⎕UCS 27),'[1;1H'
 ∇
 
-∇E∆Copy;m;fl;tl                                                                        
- →(0=1↑⍴m←Mat)/ER1                                                                     
- EN1:→(E∆EHN fl←(1,(1↑⍴m),1 0 10000)E∆Pin'Enter the from line numbers')/0,HP1,0        
- EN2:→(E∆EHN tl←(0,(1↑⍴Mat),0.1 0 1)E∆Pin'Enter the to line number')/EN1,HP2,EN1       
- EN4:Mat←(~(⍳(⍴fl)+1↑⍴Mat)∊(tl←1+⌊tl)+⍳⍴fl)⍀Mat                                        
- Mat[tl+⍳⍴fl;]←m[fl+1;]                                                                
- E∆O'The transfer is complete.'                                                        
- →0                                                                                    
- HP1:'Enter the line numbers you wish to move from the from text.'                     
- →EN1                                                                                  
- HP2:'Enter the line number in the present text after which the new lines will appear.'
- 'or enter a number between two existing lines to insert at that point,'               
- 'or enter 0 to insert at the top.'                                                    
- →EN2                                                                                  
- ER1:E∆ER'There are no lines in the present text to move.'                             
+∇E∆Copy;m;fl;tl                                                                   
+ →(0=1↑⍴m←Mat)/ER1                                                                
+ EN1:→(E∆EHN fl←(0,(¯1+1↑⍴m),1 0 10000)E∆Pin'Enter the from line numbers')/0,HP1,0
+ EN2:→(E∆EHN tl←(0,(1↑⍴Mat),0.1 0 1)E∆Pin'Enter the to line number')/EN1,HP2,EN1  
+ EN4:Mat←(~(⍳(⍴fl)+1↑⍴Mat)∊(tl←1+⌊tl)+⍳⍴fl)⍀Mat                                   
+ Mat[tl+⍳⍴fl;]←m[fl+1;]                                                           
+ E∆O'The transfer is complete.'                                                   
+ →0                                                                               
+ HP1:'Enter the line numbers you wish to copy from.'                              
+ →EN1                                                                             
+ HP2:'Enter the line number after which the new lines will appear.'               
+ 'or enter a number between two existing lines to insert at that point.'          
+ →EN2                                                                             
+ ER1:E∆ER'There are no lines to move.'                                            
 ∇
 
 ∇z←m E∆Ctit t
