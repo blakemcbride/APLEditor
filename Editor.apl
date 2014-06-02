@@ -2,7 +2,7 @@
 
  ⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝
 ⍝
-⍝ Editor 2014-05-31 10:51:20 (GMT-5)
+⍝ Editor 2014-06-02 13:26:03 (GMT-5)
 ⍝
  ⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝
 
@@ -49,7 +49,7 @@
  z←l
 ∇
 
-∇E∆Add;ln;q;Pad;s                                                 
+∇E∆Add;ln;q;Pad;s
  Pad←''                                                           
  →(0=1↑⍴Mat)/EN5                                                  
  EN1:→(E∆EHN ln←E∆CS E∆PI'Add or replace which line?  ')/0,HP1,0  
@@ -78,7 +78,7 @@
  →EN1                                                             
 ∇
 
-∇E∆Ail ln;s;q                       
+∇E∆Ail ln;s;q
  →(0=ln←⌈ln)/LP1                    
  E∆O(6↑'[',(⍕ln-1),']'),Mat[ln;]    
  LP1:→(0=⍴q←E∆Eoi 6↑'[',(⍕ln),']')/0
@@ -118,7 +118,7 @@
  ⍞←(⎕UCS 27),'[1;1H'
 ∇
 
-∇E∆Copy;m;fl;tl                                                                   
+∇E∆Copy;m;fl;tl
  →(0=1↑⍴m←Mat)/ER1                                                                
  EN1:→(E∆EHN fl←(0,(¯1+1↑⍴m),1 0 10000)E∆Pin'Enter the from line numbers')/0,HP1,0
  EN2:→(E∆EHN tl←(0,(1↑⍴Mat),0.1 0 1)E∆Pin'Enter the to line number')/EN1,HP2,EN1  
@@ -151,7 +151,7 @@
  z←(n×z)÷d+~z←d≠0
 ∇
 
-∇E∆Delete;L                                                                               
+∇E∆Delete;L
  →(0=1↑⍴Mat)/ER1                                                                          
  EN1:→(E∆EHN L←(0,(¯1+1↑⍴Mat),1 0 100)E∆Pin'Enter the line numbers to be deleted')/0,EN1,0
  Mat←(~(⍳1↑⍴Mat)∊L+1)⌿Mat                                                                 
@@ -179,7 +179,7 @@
  ⍝ z = t with line numbers in brackets added
 ∇
 
-∇z←E∆EditLine x;p;t;r;s;n;b                                       
+∇z←E∆EditLine x;p;t;r;s;n;b
  z←E∆CS x                                                         
  p←0                                                              
  LP1:⎕←z                                                          
@@ -253,22 +253,22 @@
  →LP1
  EN4:i←0⌈i-g
  →LP1
- EN5:→LP1 ∆ i←0
- EN6:→LP1 ∆ i←0⌈j-g
+ EN5:→LP1 E∆ i←0
+ EN6:→LP1 E∆ i←0⌈j-g
  EN7:→((1,j,1 0 1(E∆Lck 1↓a)/EN1
- →LP1 ∆ i←¯1+⍎1↓a
+ →LP1 E∆ i←¯1+⍎1↓a
  EN8:→((1,c,1 0 1)E∆Lck 1↓a)/EN1
- →LP1 ∆ n←¯1+⍎1↓a
+ →LP1 E∆ n←¯1+⍎1↓a
  EN9:→(0=⍴L←,0 ¯1↓d E∆SS 1↓a)/ER1
- →LP1 ∆ i←¯1+1↑(¯1+(L>1+i)⍳1)⌽L
+ →LP1 E∆ i←¯1+1↑(¯1+(L>1+i)⍳1)⌽L
  EN10:⍝ E∆Clear
  →0
  EN11:→(0=⍴L←,0 ¯1↓d E∆SS 1↓a)/ER1
- →LP1 ∆ i←¯1+¯1↑(¯1+(L>i)⍳1)⌽L
+ →LP1 E∆ i←¯1+¯1↑(¯1+(L>i)⍳1)⌽L
  EN12:→(0=⍴L←,0 ¯1↓d E∆SS 1↓a)/ER1
  t E∆LP d[L;]
  →LP1
- ER1:→EN1 ∆ E∆ER(1↓a),' does not exist.'
+ ER1:→EN1 E∆ E∆ER(1↓a),' does not exist.'
 ∇
 
 ∇z←E∆LPH;m
@@ -322,7 +322,7 @@
  ER1:E∆ER 'There are no lines to list.'
 ∇
 
-∇E∆Move;m;fl;tl                                                                        
+∇E∆Move;m;fl;tl
  →(0=1↑⍴m←Mat)/ER1                                                                     
  EN1:→(E∆EHN fl←(1,(1↑⍴m),1 0 10000)E∆Pin'Enter the from line numbers')/0,HP1,0        
  EN2:→(E∆EHN tl←(0,(1↑⍴Mat),0.1 0 1)E∆Pin'Enter the to line number')/EN1,HP2,EN1       
@@ -375,7 +375,7 @@
  END:z←z[1 3],(1↑⍴m)⍴0
 ∇
 
-∇n←v E∆Pin q;m;t                                               
+∇n←v E∆Pin q;m;t
  ⍝ v[1] = minimum value (inclusive)                            
  ⍝ v[2] = maximum value (inclusive)                            
  ⍝ v[3] = numeric increment (i.e. 1 = integer)                 
