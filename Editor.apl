@@ -1,55 +1,16 @@
-#!/usr/local/bin//usr/local/bin --script --
+#!/usr/local/bin/apl --script
 
  ⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝
 ⍝
-⍝ Editor 2014-06-02 13:26:03 (GMT-5)
+⍝ Editor 2014-09-12 15:08:43 (GMT-5)
 ⍝
  ⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝
-
-∇Editf fun;Mat;qq;fn;bv;orig;Cms;Pad;Delim;⎕IO
- ⎕IO←1                                                                              
- Delim←,'∵'
- Cms←''                                                                             
- Pad←'  '                                                                           
- →(0≠⍴,fun)/EN0
- Mat←0 0⍴''
- →EN5
- EN0:→(0=1↑⍴Mat←⎕CR fun)/ER1
- EN5:orig←Mat
- ' '                                                                                
- 'At all prompts you can type ''end'' to exit or backup to the previous question.'  
- 'You can often type ''help'' to get help.'                                         
- ' '                                                                                
- qq←   'add       =  to add; insert; or write over a line,'                         
- qq←qq,'edit      =  to modify an existing line,'
- qq←qq,'delete    =  to delete a group of lines,'                                   
- qq←qq,'copy      =  to copy lines from one place to another,'
- qq←qq,'replace   =  to search and replace a character string,'                     
- qq←qq,'screen    =  to search and list your function a screen at a time,'
- qq←qq,'list      =  to scroll the contents of your function on your screen,'
- qq←qq,'new       =  to erase the entire function,'
- qq←qq,'save      =  save function definition,'                                     
- qq←qq,'revert    =  revert back to original definition'                            
- qq←','E∆Parse qq                                                                   
- fn←'E∆Add,E∆Change,E∆Delete,E∆Copy,E∆Replace,E∆Screen,E∆List,E∆New,E∆Save,E∆Revert'
- fn←','E∆Parse fn                                                                   
- EN1:→(2↑bv←qq E∆Pim'Enter your edit command')/END,EN1                              
- ⍎,(2↓bv)⌿fn                                                                        
- →EN1                                                                               
- END:→(∨/(⍴Mat)≠⍴orig)/EN4                                                          
- →(∧/∧/Mat=orig)/0                                                                  
- EN4:→('yn'E∆Pis'Function has been modified; leave anyway')/(3⍴EN4),0,EN1           
- EN2:→(0∊⍴Mat)/EN3                                                                  
- →('yn'E∆Pis'Do you wish to return to your original text')/(3⍴EN2),0,EN3            
- EN3: →0                                                                            
- ER1:E∆ER'Function ',fun,' does not exist.'                                         
-∇
 
 ∇z←l E∆ r
  z←l
 ∇
 
-∇E∆Add;ln;q;Pad;s
+∇E∆Add;ln;q;Pad;s                                                 
  Pad←''                                                           
  →(0=1↑⍴Mat)/EN5                                                  
  EN1:→(E∆EHN ln←E∆CS E∆PI'Add or replace which line?  ')/0,HP1,0  
@@ -64,7 +25,7 @@
  EN3:→(ln≥1↑⍴Mat)/EN4                                             
  Mat[ln←ln+1;]←s↑q                                                
  →LP1                                                             
- EN4:Mat←Mat,[1]s↑q                                               
+ EN4:Mat←Mat⍪s↑q                                                  
  ln←ln+1                                                          
  →LP1                                                             
  EN5:ln←''⍴⍴Mat                                                   
@@ -118,11 +79,11 @@
  ⍞←(⎕UCS 27),'[1;1H'
 ∇
 
-∇E∆Copy;m;fl;tl
+∇E∆Copy;m;fl;tl                                                                   
  →(0=1↑⍴m←Mat)/ER1                                                                
  EN1:→(E∆EHN fl←(0,(¯1+1↑⍴m),1 0 10000)E∆Pin'Enter the from line numbers')/0,HP1,0
  EN2:→(E∆EHN tl←(0,(1↑⍴Mat),0.1 0 1)E∆Pin'Enter the to line number')/EN1,HP2,EN1  
- EN4:Mat←(~(⍳(⍴fl)+1↑⍴Mat)∊(tl←1+⌊tl)+⍳⍴fl)⍀Mat                                   
+ EN4:Mat←(~(⍳(⍴fl)+1↑⍴Mat)∊(tl←⌈tl+.01)+⍳⍴fl)⍀Mat                                 
  Mat[tl+⍳⍴fl;]←m[fl+1;]                                                           
  E∆O'The transfer is complete.'                                                   
  →0                                                                               
@@ -179,6 +140,49 @@
  ⍝ z = t with line numbers in brackets added
 ∇
 
+∇E∆Edit fun;Mat;qq;fn;bv;orig;Cms;Pad;Delim;⎕IO;⎕PW                                 
+ ⎕PW←200                                                                            
+ ⎕IO←1                                                                              
+ Delim←,'∵'                                                                         
+ Cms←''                                                                             
+ Pad←'  '                                                                           
+ →(0≠⍴,fun)/EN0                                                                     
+ Mat←0 0⍴''                                                                         
+ →EN5                                                                               
+ EN0:→(0=1↑⍴Mat←⎕CR fun)/ER1                                                        
+ EN5:orig←Mat                                                                       
+ ' '                                                                                
+ 'At all prompts you can type ''end'' to exit or backup to the previous question.'  
+ 'You can often type ''help'' to get help.'                                         
+ ' '                                                                                
+ qq←   'add       =  to add; insert; or write over a line,'                         
+ qq←qq,'edit      =  to modify an existing line,'                                   
+ qq←qq,'delete    =  to delete a group of lines,'                                   
+ qq←qq,'move      =  to move lines from one place to another,'
+ qq←qq,'copy      =  to copy lines from one place to another,'                      
+ qq←qq,'find      =  to find a character string,'
+ qq←qq,'replace   =  to search and replace a character string,'                     
+ qq←qq,'screen    =  to search and list your function a screen at a time,'          
+ qq←qq,'list      =  to scroll the contents of your function on your screen,'       
+ qq←qq,'new       =  to erase the entire function,'                                 
+ qq←qq,'save      =  save function definition,'                                     
+ qq←qq,'original  =  revert back to original definition,'
+ qq←qq,'get       =  get a different function to edit'
+ qq←','E∆Parse qq                                                                   
+ fn←'E∆Add,E∆Change,E∆Delete,E∆Move,E∆Copy,E∆Find,E∆Replace,E∆Screen,E∆List,E∆New,E∆Save,E∆Revert,E∆Get'
+ fn←','E∆Parse fn                                                                   
+ EN1:→(2↑bv←qq E∆Pim'Enter your edit command')/END,EN1                              
+ ⍎,(2↓bv)⌿fn                                                                        
+ →EN1                                                                               
+ END:→(∨/(⍴Mat)≠⍴orig)/EN4                                                          
+ →(∧/∧/Mat=orig)/0                                                                  
+ EN4:→('yn'E∆Pis'Function has been modified; leave anyway')/(3⍴EN4),0,EN1           
+ EN2:→(0∊⍴Mat)/EN3                                                                  
+ →('yn'E∆Pis'Do you wish to return to your original text')/(3⍴EN2),0,EN3            
+ EN3: →0                                                                            
+ ER1:E∆ER'Function ',fun,' does not exist.'                                         
+∇
+
 ∇z←E∆EditLine x;p;t;r;s;n;b
  z←E∆CS x                                                         
  p←0                                                              
@@ -224,6 +228,28 @@
  →0
  EN1:→('c'≠1↑z)/0
  z←⎕PW E∆CJ 1↓z
+∇
+
+∇E∆Find;s;f                                            
+ EN1:→(E∆EHN s←E∆PI'Enter the string to find:')/0,EN1,0
+ 2 1⍴' '                                               
+ →(0=⍴f←(Mat E∆SS s)[;1])/EN2                          
+ (E∆Ealn Mat)[((⍳1↑⍴Mat)∊f)/⍳1↑⍴Mat;]                  
+ 2 1⍴' '                                               
+ →0                                                    
+ EN2:E∆ER 'Text not found.'                            
+ 2 1⍴' '                                               
+∇
+
+∇E∆Get;f;m                                                      
+ →(∨/(⍴Mat)≠⍴orig)/EN1                                          
+ →(∧/∧/Mat=orig)/EN2                                            
+ EN1:E∆ER'Current function has been changed but not saved.'     
+ EN2:→(E∆EHN f←E∆PI'Enter name of new function to edit')/0,EN2,0
+ →(0=1↑⍴m←⎕CR f)/ER1                                            
+ Mat←orig←m                                                     
+ →0                                                             
+ ER1:→EN2 E∆ E∆ER'Function ',f,' does not exist.'               
 ∇
 
 ∇t E∆LP d;i;j;g;a;z;L;x;f;n;c
@@ -322,12 +348,14 @@
  ER1:E∆ER 'There are no lines to list.'
 ∇
 
-∇E∆Move;m;fl;tl
+∇E∆Move;m;fl;tl                                                                        
  →(0=1↑⍴m←Mat)/ER1                                                                     
- EN1:→(E∆EHN fl←(1,(1↑⍴m),1 0 10000)E∆Pin'Enter the from line numbers')/0,HP1,0        
+ EN1:→(E∆EHN fl←(0,(¯1+1↑⍴m),1 0 10000)E∆Pin'Enter the from line numbers')/0,HP1,0     
  EN2:→(E∆EHN tl←(0,(1↑⍴Mat),0.1 0 1)E∆Pin'Enter the to line number')/EN1,HP2,EN1       
- EN4:Mat←(~(⍳(⍴fl)+1↑⍴Mat)∊(tl←1+⌊tl)+⍳⍴fl)⍀Mat                                        
+ EN4:Mat←(~(⍳(⍴fl)+1↑⍴Mat)∊(tl←⌈tl+.01)+⍳⍴fl)⍀Mat                                      
  Mat[tl+⍳⍴fl;]←m[fl+1;]                                                                
+ fl←fl+(fl≥tl)×⍴fl                                                                     
+ Mat←(~(⍳1↑⍴Mat)∊fl+1)⌿Mat                                                             
  E∆O'The transfer is complete.'                                                        
  →0                                                                                    
  HP1:'Enter the line numbers you wish to move from the from text.'                     
@@ -339,10 +367,12 @@
  ER1:E∆ER'There are no lines in the present text to move.'                             
 ∇
 
-∇E∆New
- →(0=⍴Mat)/0
- EN1:→('yn'E∆Pis'clear present text')/0,EN1,0,EN2,0
- EN2:Mat←0 0⍴' '
+∇E∆New                                              
+ →(∨/(⍴Mat)≠⍴orig)/EN1                              
+ →(∧/∧/Mat=orig)/EN2                                
+ EN1:E∆ER'Function has been modified but not saved.'
+ EN2:→('yn'E∆Pis'Clear present text')/0,EN2,0,EN3,0 
+ EN3:orig←Mat←0 0⍴' '                               
 ∇
 
 ∇E∆O c
@@ -365,14 +395,14 @@
  r←(((0≠⍴a)×⍴r),⌈/r)⍴(,r∘.≥⍳⌈/r←¯1+(r,1+⍴a)-0,r←r/⍳⍴a)\(~r←a∈c)/a←,a
 ∇
 
-∇z←m E∆Pim p;t
- EN1:→(z←E∆EHN t←E∆CS E∆PI p,'?')/END,HP,END
- →(1=+/z←0 0,(((1↑⍴m),⍴t)↑m)∧.=t)/0
- →1 E∆ E∆ER 'Error: you have not entered a valid and unique response.'
- HP:'Enter ''end'' to exit or enter one of:'
- ⎕←(-0 10+⍴m)↑m
- →EN1
- END:z←z[1 3],(1↑⍴m)⍴0
+∇z←m E∆Pim p;t                                                          
+ EN1:→(z←E∆EHN t←E∆CS E∆PI p,'?')/END,HP,END                            
+ →(1=+/z←0 0,(((1↑⍴m),⍴t)↑m)∧.=t)/0                                     
+ →EN1 E∆ E∆ER 'Error: you have not entered a valid and unique response.'
+ HP:'Enter ''end'' to exit or enter one of:'                            
+ ⎕←(-0 10+⍴m)↑m                                                         
+ →EN1                                                                   
+ END:z←z[1 3],(1↑⍴m)⍴0                                                  
 ∇
 
 ∇n←v E∆Pin q;m;t
@@ -467,8 +497,8 @@
  z←(×n)×(⌊0.5+|n×10*p)÷10*p
 ∇
 
-∇z←E∆RS x
- ⍎'z←',((1=⍴⍴x)↑','),'(⌽∨\⌽'' ''∨.≠x)/x←((0,¯1↑⍴x)⍴'' ''),[1]x'
+∇z←E∆RS x                                                   
+ ⍎'z←',((1=⍴⍴x)↑','),'(⌽∨\⌽'' ''∨.≠x)/x←((0,¯1↑⍴x)⍴'' '')⍪x'
 ∇
 
 ∇E∆Replace;L;f;t;m;s
@@ -485,8 +515,11 @@
  ER1: E∆ER'There is no text to replace.'
 ∇
 
-∇E∆Revert
- Mat←orig
+∇E∆Revert                                               
+ →(∨/(⍴Mat)≠⍴orig)/EN1                                  
+ →(∧/∧/Mat=orig)/0                                      
+ EN1:→('yn'E∆Pis'Revert back to original')/0,EN1,0,EN2,0
+ EN2:Mat←orig                                           
 ∇
 
 ∇x←e E∆SS s;rs;old;new;so;v;i;r
@@ -543,9 +576,9 @@
  ER1:E∆ER'There are no lines to list.'
 ∇
 
-∇r←E∆VI n
- n←' 'E∆Parse(~(1⌽r)∧r←' '=n)/n←E∆CS n
- r←(1≥+/n='.')∧(∧/'¯'≠0 1↓n)∧(1≠-⌿+/∧\' .'∘.≠n)∧(∧/n∈r,'.¯ ')∧∨/n∊r←'0123456789'
+∇r←E∆VI n                                                                       
+ n←' 'E∆Parse(~(1⌽r)∧r←' '=n)/n←E∆CS n                                          
+ r←(1≥+/n='.')∧(∧/'-'≠0 1↓n)∧(1≠-⌿+/∧\' .'∘.≠n)∧(∧/n∈r,'.- ')∧∨/n∊r←'0123456789'
 ∇
 
 ∇r←v E∆Vck n
@@ -563,27 +596,6 @@
  ER2:→0 E∆ E∆ER n,' is not numeric; please re-enter.'
  ER3:E∆ER 'Error: you must enter ',(⍕v[1]),' to ',(⍕v[2]),' numbers; re-enter.'
 ∇
-
-E∆FNS←410⍴0
-  E∆FNS[⍳30]←'Editf     E',(,⎕UCS 8710),'        E',(,⎕UCS 8710),'Add     '
-  E∆FNS[30+⍳22]←'E',(,⎕UCS 8710),'Ail     E',(,⎕UCS 8710),'CJ      E',(,⎕UCS 8710)
-  E∆FNS[52+⍳27]←'CS      E',(,⎕UCS 8710),'Change  E',(,⎕UCS 8710),'Clear  '
-  E∆FNS[79+⍳23]←' E',(,⎕UCS 8710),'Copy    E',(,⎕UCS 8710),'Ctit    E',(,⎕UCS 8710)
-  E∆FNS[102+⍳26]←'DIV     E',(,⎕UCS 8710),'Delete  E',(,⎕UCS 8710),'EHN   '
-  E∆FNS[128+⍳23]←'  E',(,⎕UCS 8710),'ER      E',(,⎕UCS 8710),'Ealn    E'
-  E∆FNS[151+⍳21]←(,⎕UCS 8710),'EditLineE',(,⎕UCS 8710),'Eoi     E',(,⎕UCS 8710)
-  E∆FNS[172+⍳26]←'LP      E',(,⎕UCS 8710),'LPH     E',(,⎕UCS 8710),'Lck   '
-  E∆FNS[198+⍳23]←'  E',(,⎕UCS 8710),'List    E',(,⎕UCS 8710),'Move    E'
-  E∆FNS[221+⍳21]←(,⎕UCS 8710),'New     E',(,⎕UCS 8710),'O       E',(,⎕UCS 8710)
-  E∆FNS[242+⍳26]←'Omega   E',(,⎕UCS 8710),'PI      E',(,⎕UCS 8710),'Parse '
-  E∆FNS[268+⍳23]←'  E',(,⎕UCS 8710),'Pim     E',(,⎕UCS 8710),'Pin     E'
-  E∆FNS[291+⍳21]←(,⎕UCS 8710),'Pis     E',(,⎕UCS 8710),'Piv     E',(,⎕UCS 8710)
-  E∆FNS[312+⍳26]←'RND     E',(,⎕UCS 8710),'RS      E',(,⎕UCS 8710),'Replac'
-  E∆FNS[338+⍳23]←'e E',(,⎕UCS 8710),'Revert  E',(,⎕UCS 8710),'SS      E'
-  E∆FNS[361+⍳21]←(,⎕UCS 8710),'Save    E',(,⎕UCS 8710),'Screen  E',(,⎕UCS 8710)
-  E∆FNS[382+⍳26]←'VI      E',(,⎕UCS 8710),'Vck     E',(,⎕UCS 8710),'FNS   '
-  E∆FNS[408+⍳2]←'  '
-  E∆FNS←41 10⍴E∆FNS
 
 ⎕CT←1E¯13
 
@@ -609,4 +621,6 @@ E∆FNS←410⍴0
 ⎕RL←1
 
 ⎕TZ←-5
+
+⎕X←0
 
