@@ -34,19 +34,19 @@ Eventually, you are likely to want to get rid of the editor facilities
 that were copied into your workspace.  This can easily and completely
 be done by executing the following:
 
-	⎕EX E∆FNS
+	E∆Erase
 
 STARTUP
 
 Function editing is done one function at a time.  You can evoke the
 editor in two ways as follows:
 
-	Editf 'MyFunc'
+	E∆Edit 'MyFunc'
 
 This allows you to edit the pre-existing APL function named MyFunc.
 You can also do:
 
-	Editf ''
+	E∆Edit ''
 
 This allows you to create a new function.
 
@@ -76,13 +76,17 @@ follows:
     add       =  to add; insert; or write over a line                  
     edit      =  to modify an existing line                            
     delete    =  to delete a group of lines                            
+    move      =  to move lines from one place to another               
     copy      =  to copy lines from one place to another               
+    find      =  to find a character string                            
     replace   =  to search and replace a character string              
     screen    =  to search and list your function a screen at a time   
     list      =  to scroll the contents of your function on your screen
     new       =  to erase the entire function                          
     save      =  save function definition                              
-    revert    =  revert back to original definition                    
+    original  =  revert back to original definition                    
+    get       =  get a different function to edit                      
+
 
 
  LINE EDITING
