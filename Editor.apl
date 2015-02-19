@@ -2,7 +2,7 @@
 
  ⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝
 ⍝
-⍝ Editor 2014-09-12 15:57:45 (GMT-5)
+⍝ Editor 2015-02-19 07:07:11 (GMT-6)
 ⍝
  ⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝
 
@@ -79,20 +79,20 @@
  ⍞←(⎕UCS 27),'[1;1H'
 ∇
 
-∇E∆Copy;m;fl;tl                                                                   
- →(0=1↑⍴m←Mat)/ER1                                                                
- EN1:→(E∆EHN fl←(0,(¯1+1↑⍴m),1 0 10000)E∆Pin'Enter the from line numbers')/0,HP1,0
- EN2:→(E∆EHN tl←(0,(1↑⍴Mat),0.1 0 1)E∆Pin'Enter the to line number')/EN1,HP2,EN1  
- EN4:Mat←(~(⍳(⍴fl)+1↑⍴Mat)∊(tl←⌈tl+.01)+⍳⍴fl)⍀Mat                                 
- Mat[tl+⍳⍴fl;]←m[fl+1;]                                                           
- E∆O'The transfer is complete.'                                                   
- →0                                                                               
- HP1:'Enter the line numbers you wish to copy from.'                              
- →EN1                                                                             
- HP2:'Enter the line number after which the new lines will appear.'               
- 'or enter a number between two existing lines to insert at that point.'          
- →EN2                                                                             
- ER1:E∆ER'There are no lines to move.'                                            
+∇E∆Copy;m;fl;tl                                                                    
+ →(0=1↑⍴m←Mat)/ER1                                                                 
+ EN1:→(E∆EHN fl←(0,(¯1+1↑⍴m),1 0 10000)E∆Pin'Enter the from line numbers')/0,HP1,0 
+ EN2:→(E∆EHN tl←(0,(¯1+1↑⍴Mat),0.1 0 1)E∆Pin'Enter the to line number')/EN1,HP2,EN1
+ EN4:Mat←(~(⍳(⍴fl)+1↑⍴Mat)∊(tl←⌈tl+.01)+⍳⍴fl)⍀Mat                                  
+ Mat[tl+⍳⍴fl;]←m[fl+1;]                                                            
+ E∆O'The transfer is complete.'                                                    
+ →0                                                                                
+ HP1:'Enter the line numbers you wish to copy from.'                               
+ →EN1                                                                              
+ HP2:'Enter the line number after which the new lines will appear.'                
+ 'or enter a number between two existing lines to insert at that point.'           
+ →EN2                                                                              
+ ER1:E∆ER'There are no lines to move.'                                             
 ∇
 
 ∇z←m E∆Ctit t
@@ -245,15 +245,15 @@
  2 1⍴' '                                               
 ∇
 
-∇E∆Get;f;m                                                      
- →(∨/(⍴Mat)≠⍴orig)/EN1                                          
- →(∧/∧/Mat=orig)/EN2                                            
- EN1:E∆ER'Current function has been changed but not saved.'     
- EN2:→(E∆EHN f←E∆PI'Enter name of new function to edit')/0,EN2,0
- →(0=1↑⍴m←⎕CR f)/ER1                                            
- Mat←orig←m                                                     
- →0                                                             
- ER1:→EN2 E∆ E∆ER'Function ',f,' does not exist.'               
+∇E∆Get;f;m                                                       
+ →(∨/(⍴Mat)≠⍴orig)/EN1                                           
+ →(∧/∧/Mat=orig)/EN2                                             
+ EN1:E∆ER'Current function has been changed but not saved.'      
+ EN2:→(E∆EHN f←E∆PI'Enter name of new function to edit:')/0,EN2,0
+ →(0=1↑⍴m←⎕CR f)/ER1                                             
+ Mat←orig←m                                                      
+ →0                                                              
+ ER1:→EN2 E∆ E∆ER'Function ',f,' does not exist.'                
 ∇
 
 ∇t E∆LP d;i;j;g;a;z;L;x;f;n;c
@@ -438,10 +438,10 @@
  ER1:→EN1 E∆ E∆ER(⍕n), ' already exists; Please reenter.'      
 ∇
 
-∇z←s E∆Pis p;t
- →(z←(E∆EHN t←(¯1+(t≠' ')⍳1)↓t←E∆PI p,' [',s,']?'),(⍴s)⍴0)/0
- →(z[3+⍳⍴,s]←s=1↑t)/0
- →1 E∆ E∆ER 'Invalid entry; valid responses are: ',(,((¯1↓s),[1.5]','),' '),'or ',(¯1↑s),'.'
+∇z←s E∆Pis p;t                                                                                
+ EN1:→(z←(E∆EHN t←(¯1+(t≠' ')⍳1)↓t←E∆PI p,' [',s,']?'),(⍴s)⍴0)/0                              
+ →(z[3+⍳⍴,s]←s=1↑t)/0                                                                         
+ →EN1 E∆ E∆ER 'Invalid entry; valid responses are: ',(,((¯1↓s),[1.5]','),' '),'or ',(¯1↑s),'.'
 ∇
 
 ∇n←v E∆Piv q;t;m;s;b;e;a
@@ -624,7 +624,7 @@
 
 ⎕RL←1
 
-⎕TZ←-5
+⎕TZ←-6
 
 ⎕X←0
 
