@@ -285,7 +285,7 @@
  →LP1
  EN5:→LP1 E∆ i←0
  EN6:→LP1 E∆ i←0⌈j-g
- EN7:→((1,j,1 0 1(E∆Lck 1↓a)/EN1
+ EN7:→((1,j,1 0 1)E∆Lck 1↓a)/EN1
  →LP1 E∆ i←¯1+⍎1↓a
  EN8:→((1,c,1 0 1)E∆Lck 1↓a)/EN1
  →LP1 E∆ n←¯1+⍎1↓a
