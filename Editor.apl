@@ -263,7 +263,7 @@
  j←1↑⍴d←E∆RS d
  →(x←(80>1↓⍴t)∧80>1↓⍴d)/EN1
  f←c↑,5 0⍕5×⍳c
- f[Omega f=' ']←'-'
+ f[E∆Omega f=' ']←'-'
  i←-g←¯1+g
  →EN1
  LP1:E∆Clear
