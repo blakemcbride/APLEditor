@@ -176,9 +176,9 @@
  →EN1                                                                               
  END:→(∨/(⍴Mat)≠⍴orig)/EN4                                                          
  →(∧/∧/Mat=orig)/0                                                                  
- EN4:→('yn'E∆Pis'Function has been modified; leave anyway')/(3⍴EN4),0,EN1           
+ EN4:→('yn'E∆Pic'Function has been modified; leave anyway')/(3⍴EN4),0,EN1
  EN2:→(0∊⍴Mat)/EN3                                                                  
- →('yn'E∆Pis'Do you wish to return to your original text')/(3⍴EN2),0,EN3            
+ →('yn'E∆Pic'Do you wish to return to your original text')/(3⍴EN2),0,EN3
  EN3: →0                                                                            
  ER1:E∆ER'Function ',fun,' does not exist.'                                         
 ∇
@@ -375,7 +375,7 @@
  →(∨/(⍴Mat)≠⍴orig)/EN1                              
  →(∧/∧/Mat=orig)/EN2                                
  EN1:E∆ER'Function has been modified but not saved.'
- EN2:→('yn'E∆Pis'Clear present text')/0,EN2,0,EN3,0 
+ EN2:→('yn'E∆Pic'Clear present text')/0,EN2,0,EN3,0
  EN3:orig←Mat←0 0⍴' '                               
 ∇
 
@@ -438,7 +438,7 @@
  ER1:→EN1 E∆ E∆ER(⍕n), ' already exists; Please reenter.'      
 ∇
 
-∇z←s E∆Pis p;t                                                                                
+∇z←s E∆Pic p;t
  EN1:→(z←(E∆EHN t←(¯1+(t≠' ')⍳1)↓t←E∆PI p,' [',s,']?'),(⍴s)⍴0)/0                              
  →(z[3+⍳⍴,s]←s=1↑t)/0                                                                         
  →EN1 E∆ E∆ER 'Invalid entry; valid responses are: ',(,((¯1↓s),[1.5]','),' '),'or ',(¯1↑s),'.'
@@ -522,7 +522,7 @@
 ∇E∆Revert                                               
  →(∨/(⍴Mat)≠⍴orig)/EN1                                  
  →(∧/∧/Mat=orig)/0                                      
- EN1:→('yn'E∆Pis'Revert back to original')/0,EN1,0,EN2,0
+ EN1:→('yn'E∆Pic'Revert back to original')/0,EN1,0,EN2,0
  EN2:Mat←orig                                           
 ∇
 
