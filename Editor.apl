@@ -1,14 +1,15 @@
-#!/usr/local/bin/apl --script
- ⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝
-⍝
-⍝ Editor 2017-07-07  04:05:20 (GMT-6)
- ⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝
+#!/usr/bin/env -S apl --script
+ ⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝
+⍝                                                                    ⍝
+⍝ Editor                               2026-03-09  07:07:58 (GMT-6)  ⍝
+⍝                                                                    ⍝
+ ⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝
 
 ∇z←l E∆ r
  z←l
 ∇
 
-∇E∆Add;ln;q;Pad;s                                                 
+∇E∆Add;ln;q;Pad;s
  Pad←''
  →(0=1↑⍴Mat)/EN5
  EN1:→(E∆EHN ln←E∆CS E∆PI'Add or replace which line?  ')/0,HP1,0
@@ -77,7 +78,7 @@
  ⍞←(⎕UCS 27),'[1;1H'
 ∇
 
-∇E∆Copy;m;fl;tl                                                                    
+∇E∆Copy;m;fl;tl
  →(0=1↑⍴m←Mat)/ER1
  EN1:→(E∆EHN fl←(0,(¯1+1↑⍴m),1 0 10000)E∆Pin'Enter the from line numbers')/0,HP1,0
  EN2:→(E∆EHN tl←(0,(¯1+1↑⍴Mat),0.1 0 1)E∆Pin'Enter the to line number')/EN1,HP2,EN1
@@ -138,7 +139,7 @@
  ⍝ z = t with line numbers in brackets added
 ∇
 
-∇E∆Edit fun;Mat;qq;fn;bv;orig;Cms;Pad;Delim;⎕IO;⎕PW                                 
+∇E∆Edit fun;Mat;qq;fn;bv;orig;Cms;Pad;Delim;⎕IO;⎕PW
  ⎕PW←200
  ⎕IO←1
  Delim←,'∵'
@@ -228,11 +229,11 @@
  z←⎕PW E∆CJ 1↓z
 ∇
 
-∇E∆Erase;t                            
+∇E∆Erase;t
  t←⎕EX ((((1↑⍴t),2)↑t)∧.='E∆')⌿t←⎕NL 3
 ∇
 
-∇E∆Find;s;f                                            
+∇E∆Find;s;f
  EN1:→(E∆EHN s←E∆PI'Enter the string to find:')/0,EN1,0
  2 1⍴' '
  →(0=⍴f←(Mat E∆SS s)[;1])/EN2
@@ -243,7 +244,7 @@
  2 1⍴' '
 ∇
 
-∇E∆Get;f;m                                                       
+∇E∆Get;f;m
  →(∨/(⍴Mat)≠⍴orig)/EN1
  →(∧/∧/Mat=orig)/EN2
  EN1:E∆ER'Current function has been changed but not saved.'
@@ -354,7 +355,7 @@
  ER1:E∆ER 'There are no lines to list.'
 ∇
 
-∇E∆Move;m;fl;tl                                                                        
+∇E∆Move;m;fl;tl
  →(0=1↑⍴m←Mat)/ER1
  EN1:→(E∆EHN fl←(0,(¯1+1↑⍴m),1 0 10000)E∆Pin'Enter the from line numbers')/0,HP1,0
  EN2:→(E∆EHN tl←(0,(1↑⍴Mat),0.1 0 1)E∆Pin'Enter the to line number')/EN1,HP2,EN1
@@ -373,7 +374,7 @@
  ER1:E∆ER'There are no lines in the present text to move.'
 ∇
 
-∇E∆New                                              
+∇E∆New
  →(∨/(⍴Mat)≠⍴orig)/EN1
  →(∧/∧/Mat=orig)/EN2
  EN1:E∆ER'Function has been modified but not saved.'
@@ -407,7 +408,7 @@
  →EN1 E∆ E∆ER 'Invalid entry; valid responses are: ',(,((¯1↓s),[1.5]','),' '),'or ',(¯1↑s),'.'
 ∇
 
-∇z←m E∆Pim p;t                                                          
+∇z←m E∆Pim p;t
  EN1:→(z←E∆EHN t←E∆CS E∆PI p,'?')/END,HP,END
  →(1=+/z←0 0,(((1↑⍴m),⍴t)↑m)∧.=t)/0
  →EN1 E∆ E∆ER 'Error: you have not entered a valid and unique response.'
@@ -503,7 +504,7 @@
  z←(×n)×(⌊0.5+|n×10*p)÷10*p
 ∇
 
-∇z←E∆RS x                                                   
+∇z←E∆RS x
  ⍎'z←',((1=⍴⍴x)↑','),'(⌽∨\⌽'' ''∨.≠x)/x←((0,¯1↑⍴x)⍴'' '')⍪x'
 ∇
 
@@ -521,7 +522,7 @@
  ER1: E∆ER'There is no text to replace.'
 ∇
 
-∇E∆Revert                                               
+∇E∆Revert
  →(∨/(⍴Mat)≠⍴orig)/EN1
  →(∧/∧/Mat=orig)/0
  EN1:→('yn'E∆Pic'Revert back to original')/0,EN1,0,EN2,0
@@ -582,7 +583,7 @@
  ER1:E∆ER'There are no lines to list.'
 ∇
 
-∇r←E∆VI n                                                                       
+∇r←E∆VI n
  n←' 'E∆Parse(~(1⌽r)∧r←' '=n)/n←E∆CS n
  r←(1≥+/n='.')∧(∧/'-'≠0 1↓n)∧(1≠-⌿+/∧\' .'∘.≠n)∧(∧/n∈r,'.- ')∧∨/n∊r←'0123456789'
 ∇
@@ -605,18 +606,17 @@
 
 ⎕CT←1E¯13
 
-⎕FC←(,⎕UCS 46 44 8902 48 95 175)
+⎕FC←".,⋆0_¯"
 
 ⎕IO←1
 
 ⎕L←0
 
-⎕LX←' ' ⍝ proto 1
-  ⎕LX←0⍴⎕LX ⍝ proto 2
+⎕LX←""
 
 ⎕PP←10
 
-⎕PR←,' '
+⎕PR←" "
 
 ⎕PS←0 0
 
@@ -629,4 +629,10 @@
 ⎕TZ←¯6
 
 ⎕X←0
+
+
+
+
+
+
 

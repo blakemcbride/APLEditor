@@ -1,6 +1,6 @@
 
 An APL Editor for GNU APL
-Blake McBride (blake@arahant.com)
+Blake McBride (blake@mcbridemail.com)
 
 This package is located at:
 https://github.com/blakemcbride
